@@ -7,6 +7,6 @@ import users from "./src/routes/users.mjs";
 const app = express();
 
 // Load the routes
-app.use("/users", users);
+app.use("/auth", users);
 
 export default app

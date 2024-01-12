@@ -11,12 +11,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Load the /posts routes
+// Load the routes
 app.use(routes);
 
 // Global error handling
 app.use((err, _req, res, next) => {
-    res.status(500).send("Uh oh! An unexpected error occured.");
+    res.status(500).send("Uh oh! An unexpected error occured." + err);
+    console.log(err)
 });
 
 // start the Express server
