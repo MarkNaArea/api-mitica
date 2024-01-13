@@ -1,5 +1,6 @@
 // Get a list of 50 posts
 import db from "../db/conn.mjs";
+import pkg from 'jsonwebtoken';
 
 export const getUsers = async (req, res) => {
     let collection = await db.collection("users");
@@ -34,6 +35,8 @@ export const getSinglePost = async (req, res) => {
 };
 
 export const loginUser = async (req, res) => {
+    console.log(req.body)
+
     let collection = db.collection("users");
     let results = await collection.find({}).toArray();
 
@@ -41,15 +44,22 @@ export const loginUser = async (req, res) => {
     const username = req.body.username
     const password = req.body.password
     let isLogged = false
+    let userId = ""
 
     results.forEach(user => {
         if(user.username === username && user.password === password){
+            userId = user._id
             isLogged = true
         }
     });
     
     if (isLogged) {
-        res.status(200).json({ message: 'Logged in successfully' });
+        // Gera um token JWT, com validade de 30 dias (pkg == jwt, para lembrar)
+        const token = pkg.sign({ userId: userId }, process.env.SECRET_KEY, {
+            expiresIn: "30d",
+        });
+
+        res.status(200).json({ message: 'Logged in successfully', token: token });
     } else {
         // Invalid username or password, return an error response
         res.status(401).json({ message: 'Invalid username or password' });

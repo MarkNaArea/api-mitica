@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import "./loadEnvironment.mjs";
 import "express-async-errors";
-import users from "./src/routes/users.mjs";
+import users from "./src/routes/authRoutes.mjs";
 
 const app = express();
 
