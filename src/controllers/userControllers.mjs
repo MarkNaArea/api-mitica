@@ -40,19 +40,20 @@ export const loginUser = async (req, res) => {
     // console.log(req.body) << Pra pegar o body da req
     const username = req.body.username
     const password = req.body.password
+    let isLogged = false
 
     results.forEach(user => {
-        console.log(username)
-        console.log(user.username)
-        console.log(password)
-        console.log(user.password)
         if(user.username === username && user.password === password){
-            res.status(200).json({ message: 'Logged in successfully' });
+            isLogged = true
         }
     });
-
-    // Invalid username or password, return an error response
-    res.status(401).json({ message: 'Invalid username or password' });
+    
+    if (isLogged) {
+        res.status(200).json({ message: 'Logged in successfully' });
+    } else {
+        // Invalid username or password, return an error response
+        res.status(401).json({ message: 'Invalid username or password' });
+    }
 }
 
 
@@ -62,16 +63,21 @@ export const registerUser = async (req, res) => {
     let {username, password} = req.body;
 
     let existentUsers = await collection.find({}).toArray();
+    let userExists = false
 
     //check if theres already an user with that username
     existentUsers.forEach(user => {
         if (user.username === username) {
-            res.status(409).json({message: "Username already exists"})
+            userExists = true
         }
     })
     
-    let result = await collection.insertOne(req.body);
-    res.send(result).status(204);
+    if (!userExists) {
+        let result = await collection.insertOne(req.body);
+        res.send(result).status(204);
+    } else {
+        res.status(409).json({message: "Username already exists"})
+    }
 };
 
 
