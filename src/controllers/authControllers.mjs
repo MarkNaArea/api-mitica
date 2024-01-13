@@ -83,8 +83,8 @@ export const registerUser = async (req, res) => {
     })
     
     if (!userExists) {
-        let result = await collection.insertOne(req.body);
-        res.send(result).status(204);
+        await collection.insertOne(req.body);
+        res.status(204).json({message: "User sucessfully created"});
     } else {
         res.status(409).json({message: "Username already exists"})
     }
