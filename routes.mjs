@@ -5,6 +5,7 @@ import "express-async-errors";
 import users from "./src/routes/authRoutes.mjs";
 import campanhas from "./src/routes/campanhaRoutes.mjs"
 import characters from "./src/routes/characterRoutes.mjs"
+import characterInvites from "./src/routes/characterRoutes.mjs"
 
 const app = express();
 
@@ -12,5 +13,6 @@ const app = express();
 app.use("/auth", users);
 app.use("/campanhas", campanhas);
 app.use("/characters", characters);
+app.use("/characterinvites", characterInvites)
 
 export default app
