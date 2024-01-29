@@ -8,6 +8,7 @@ import characters from "./src/routes/characterRoutes.mjs"
 import characterInvites from "./src/routes/characterRoutes.mjs"
 import skills from "./src/routes/skillRoutes.mjs"
 import wikiRaces from "./src/routes/wikiRaceRoutes.mjs"
+import classes from "./src/routes/classRoutes.mjs"
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.use("/characters", characters);
 app.use("/characterinvites", characterInvites)
 app.use("/skills", skills)
 app.use("/wikiraces", wikiRaces)
+app.use("/class", classes)
 
 export default app
