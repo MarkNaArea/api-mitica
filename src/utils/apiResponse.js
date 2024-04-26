@@ -27,10 +27,7 @@ const errorResponse = (res, statusCode, message) => {
  * @returns {Object} - O objeto de resposta JSON contendo o status e os dados de resposta.
  */
 const successResponse = (res, statusCode, data) => {
-    return res.status(statusCode).json({
-        status: "Sucesso",
-        data: data,
-    });
+    return res.status(statusCode).json(data);
 };
 
 module.exports = {
