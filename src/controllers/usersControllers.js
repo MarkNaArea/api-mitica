@@ -5,15 +5,17 @@ const jwt = require("jsonwebtoken");
 const loginUser = async (req, res) => {
     try {
         // Pegando os dados do body da requisição
-        const { email, password } = req.body;
+        const { username, password } = req.body;
 
         // Encontra o usuario por e-mail
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
 
         if (!user) {
             return errorResponse(res, 404, "Usuário não encontrado");
         }
         const passwordMatch = user.password === password;
+
+        console.log(user)
 
         if (!passwordMatch) {
             return errorResponse(res, 403, "Senha incorreta");
