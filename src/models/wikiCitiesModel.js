@@ -27,6 +27,6 @@ const wikiCitiesSchema = new mongoose.Schema({
     }
 });
 
-const WikiCities = mongoose.model('wikiCities', wikiCitiesSchema);
+const WikiCities = mongoose.model('wiki_cities', wikiCitiesSchema);
 
 module.exports = WikiCities;
