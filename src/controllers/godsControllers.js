@@ -1,5 +1,4 @@
 const Gods = require("../models/godsModel.js.js");
-const GodGroup = require("../models/godGroupModel.js");
 const { errorResponse, successResponse } = require("../utils/apiResponse.js");
 
 const getAllGods = async (req, res) => {
@@ -17,7 +16,7 @@ const getAllGods = async (req, res) => {
 
 const getGodById = async (req, res) => {
     try {
-        const god = await Gods.findById(req.params.id);
+        const god = await Gods.findById(req.query.id);
         if (!god) {
             return errorResponse(res, 404, "Deus não encontrado");
         }
@@ -29,7 +28,7 @@ const getGodById = async (req, res) => {
 
 const getAllGodsByGroupGodId = async (req, res) => {
     try {
-        const gods = await Gods.find({ god_group_id: req.params.god_group_id });
+        const gods = await Gods.find({ god_group_id: req.query.god_group_id });
         if (!gods) {
             return errorResponse(res, 404, "Deuses não encontrados");
         }
