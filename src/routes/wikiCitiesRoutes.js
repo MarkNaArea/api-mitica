@@ -12,3 +12,5 @@ router
     .delete(wikiCitiesControllers.deleteWikiCity);
 
 router.route('/search/').get(wikiCitiesControllers.getWikiCityById);
+
+module.exports = router;
