@@ -40,12 +40,12 @@ const registerUser = async (req, res) => {
     try {
         const userExists = await User.findOne({ email: req.body.email });
         if (userExists) {
-            return errorResponse(res, 400, "Usuário já existe");
+            return errorResponse(res, 409, "Usuário já existe");
         }
 
         const newUser = new User(req.body);
 
-        return successResponse(res, 201, {user: newUser})
+        return successResponse(res, 204, {user: newUser})
     } catch (error) {
         return errorResponse(res, 500, `Erro ao criar usuário: ${error.message}`);
     }
