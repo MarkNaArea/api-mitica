@@ -45,6 +45,8 @@ const registerUser = async (req, res) => {
 
         const newUser = new User(req.body);
 
+        await newUser.save();
+
         return successResponse(res, 204, {user: newUser})
     } catch (error) {
         return errorResponse(res, 500, `Erro ao criar usuário: ${error.message}`);
