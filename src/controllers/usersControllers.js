@@ -43,10 +43,12 @@ const registerUser = async (req, res) => {
             return errorResponse(res, 409, "Usuário já existe");
         }
 
-        const newUser = await User.create(req.body);
+        const newUser = new User(req.body);
+        await newUser.save();
 
         return successResponse(res, 204, {user: newUser})
     } catch (error) {
+        console.log(error)
         return errorResponse(res, 500, `Erro ao criar usuário: ${error.message}`);
     }
 }
