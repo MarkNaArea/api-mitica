@@ -5,7 +5,7 @@ const campaignsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    gamemaster: {
+    game_master_id: {
         type: String,
         required: true
     },

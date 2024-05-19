@@ -13,4 +13,8 @@ router
 
 router.route("/search/").get(campaignsControllers.getCampaignById);
 
+router.route("/searchuser/").get(campaignsControllers.getCampaignsByUserId);
+
+router.route("/searchmaster/").get(campaignsControllers.getCampaignsByMasterId);
+
 module.exports = router;

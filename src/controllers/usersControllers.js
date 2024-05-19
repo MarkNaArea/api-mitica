@@ -22,11 +22,11 @@ const loginUser = async (req, res) => {
         }
 
         // Gera um token JWT, com validade de 30 dias
-        const token = jwt.sign({ userId: user._id, name: user.name, email: user.email }, process.env.SECRET_KEY, {
+        const token = jwt.sign({ userId: user._id, name: user.username, email: user.email }, process.env.SECRET_KEY, {
             expiresIn: "30d",
         });
 
-        return successResponse(res, 200, { token: token, username: user.name, userId: user._id });
+        return successResponse(res, 200, { token: token, username: user.username, userId: user._id });
     } catch (error) {
         return errorResponse(
             res,

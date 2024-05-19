@@ -8,6 +8,7 @@ const godGroupRouter = require('./routes/godGroupRoutes')
 const wikiRaceRouter = require('./routes/wikiRacesRoutes')
 const wikiClassRouter = require('./routes/wikiClassesRoutes')
 const wikiCityRouter = require('./routes/wikiCitiesRoutes')
+const campaignsCharactersUsersRouter = require('./routes/campaignsCharactersUsersRoutes')
 //const classes = require("./src/routes/classesRoutes.js");
 
 const app = express();
@@ -17,6 +18,7 @@ app.use("/users/", userRouter);
 app.use("/campaigns/", campaignRouter);
 app.use("/characters/", characterRouter);
 app.use("/skills/", skillRouter);
+app.use("/campaignsCharactersUsers/", campaignsCharactersUsersRouter);
 app.use("/wikiraces/", wikiRaceRouter);
 app.use("/wikiclasses/", wikiClassRouter);
 app.use("/gods/", godsRouter);
